@@ -21,10 +21,10 @@ type User struct {
 }
 
 type MessageContent struct {
-	Pair       []User
-	Message    string
-	JiraTag    string
-	JiraNumber int
+	Collaborators []User
+	Message       string
+	JiraTag       string
+	JiraNumber    int
 }
 
 type Config struct {
@@ -40,7 +40,7 @@ func main() {
 	FullMsg.JiraTag = jiraTag
 
 	app := &cli.App{
-		Name:  "Git-cli template ",
+		Name:  "Git Team template ",
 		Usage: "Easy to use git comment generator",
 		Commands: []*cli.Command{
 			{
@@ -68,7 +68,7 @@ func main() {
 					},
 				},
 				Action: func(c *cli.Context) error {
-					FullMsg.Pair = getPairDetails(pair, team)
+					FullMsg.Collaborators = getPairDetails(pair, team)
 					formattedMsg := format(FullMsg)
 					commitMsg(formattedMsg)
 					return nil

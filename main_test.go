@@ -32,17 +32,17 @@ func TestCommitMessageFormat(t *testing.T) {
 		{
 			"Plain commit message with ticket number one pair",
 			MessageContent{
-				Pair:    append(pairs, pairOne),
-				Message: "Plain commit message",
-				JiraTag: "MYTEAM", JiraNumber: 1234},
+				Collaborators: append(pairs, pairOne),
+				Message:       "Plain commit message",
+				JiraTag:       "MYTEAM", JiraNumber: 1234},
 			"[MYTEAM-1234] Plain commit message\n\n\n" +
 				"Co-Authored-by: Guybrush Threepwood <gthreepwood@monkeyisland.com>\n"},
 		{
 			"Plain commit message with ticket number multiple pairs pair",
 			MessageContent{
-				Pair:    append(pairs, pairOne, pairTwo),
-				Message: "Plain commit message",
-				JiraTag: "MYTEAM", JiraNumber: 1234},
+				Collaborators: append(pairs, pairOne, pairTwo),
+				Message:       "Plain commit message",
+				JiraTag:       "MYTEAM", JiraNumber: 1234},
 			"[MYTEAM-1234] Plain commit message\n\n\n" +
 				"Co-Authored-by: Guybrush Threepwood <gthreepwood@monkeyisland.com>\n" +
 				"Co-Authored-by: Elaine Marley <emarley@monkeyisland.com>\n"},
