@@ -1,8 +1,8 @@
 ---
 users:
   - shortname: emarley
-      fullname: Elaine Marley
-      email: emarley@monkeyisland.com
+    fullname: Elaine Marley
+    email: emarley@monkeyisland.com
   - shortname: gthreepwood
     fullname: Guybrush Threepwood
     email: gthreepwood@monkeyisland.com
