@@ -70,9 +70,11 @@ func main() {
 				},
 				Action: func(c *cli.Context) error {
 					FullMsg.Collaborators = getPairDetails(pair, team)
-					formattedMsg := format(FullMsg)
-					commitMsg(formattedMsg)
-					return nil
+					formattedMsg, err := format(FullMsg)
+					if err != nil {
+						return err
+					}
+					return commitMsg(formattedMsg)
 				},
 			},
 			{
@@ -118,7 +120,7 @@ func getPairDetails(pair string, team []User) []User {
 	return pairDetails
 }
 
-func commitMsg(formattedMsg string) {
+func commitMsg(formattedMsg string) error {
 	cmd := exec.Command("git", "commit", "-m", formattedMsg)
 	var out bytes.Buffer
 	var stderr bytes.Buffer
@@ -127,34 +129,35 @@ func commitMsg(formattedMsg string) {
 
 	err := cmd.Run()
 	if err != nil {
-		fmt.Println("Commit unsuccessful: " + fmt.Sprint(err) + ": " + stderr.String())
+		return fmt.Errorf("Commit unsuccessful: %w - %s\n", err, stderr.String())
 	} else {
 		fmt.Println("Commit successful: " + out.String())
+		return nil
 	}
 }
 
-func format(FullMsg MessageContent) string {
+func format(FullMsg MessageContent) (string, error) {
 	buf := new(bytes.Buffer)
 	t, err := template.New("commitMessage").Parse(msgFormat)
 	if err != nil {
-		panic(err)
+		return "", fmt.Errorf("Error creating template: %w\n", err)
 	}
 	err = t.Execute(buf, FullMsg)
 	if err != nil {
-		panic(err)
+		return "", fmt.Errorf("Error parsing template: %w\n", err)
 	}
-	return buf.String()
+	return buf.String(), nil
 }
 
 func loadConfig(configPath string) ([]User, string) {
 	data, err := ioutil.ReadFile(configPath)
 	if err != nil {
-		fmt.Print(err)
+		fmt.Errorf("Error while loading config file: %w\n", err)
 	}
 	var config Config
 	err = yaml.Unmarshal(data, &config)
 	if err != nil {
-		fmt.Println("error:", err)
+		fmt.Errorf("Error while marshaling: %w\n", err)
 	}
 	return config.Users, config.JiraTag
 }
