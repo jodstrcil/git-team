@@ -1,0 +1,10 @@
+---
+users:
+  - shortname: emarley
+      fullname: Elaine Marley
+      email: emarley@monkeyisland.com
+  - shortname: gthreepwood
+    fullname: Guybrush Threepwood
+    email: gthreepwood@monkeyisland.com
+
+jiratag: MYTEAM
