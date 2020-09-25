@@ -3,8 +3,6 @@ package main
 import (
 	"bytes"
 	"fmt"
-	"github.com/urfave/cli/v2"
-	"gopkg.in/yaml.v2"
 	"io/ioutil"
 	"log"
 	"os"
@@ -12,6 +10,9 @@ import (
 	"strings"
 	"text/tabwriter"
 	"text/template"
+
+	"github.com/urfave/cli/v2"
+	"gopkg.in/yaml.v2"
 )
 
 type User struct {
