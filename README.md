@@ -1,4 +1,4 @@
-# Git for pairing :rainbow::shandshake::rainbow:
+# Git for pairing :rainbow::handshake::rainbow:
 
 
 Small cli tool to format your commit messages including your collaborators, and the ticket you are working on.
