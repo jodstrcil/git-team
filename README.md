@@ -1,4 +1,7 @@
 # Git Team :rainbow::handshake::rainbow:
+
+![Build Status](https://img.shields.io/github/workflow/status/jodstrcil/git-team/Go?style=flat-square)
+
 ### CLI for pairing
 
 
