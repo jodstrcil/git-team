@@ -50,7 +50,7 @@ jiratag: MYTEAM
  If you want to use this tool globally you need to export the path of you config file to environment variable GIT_TEAM_CONFIG
  
  ```
- echo 'export GIT_TEAM_CONFIG=<path_to_config_file' >> ~/.zshrc
+ echo 'export GIT_TEAM_CONFIG=<path_to_config_file>' >> ~/.zshrc
  ```
  Once this is set you are ready to go: 
 
