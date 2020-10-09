@@ -34,7 +34,7 @@ type Config struct {
 }
 
 func main() {
-	var ConfigPath = "./config.yml"
+	var ConfigPath = getConfigPath()
 	var team, jiraTag = loadConfig(ConfigPath)
 	var pair string
 	var FullMsg MessageContent
@@ -93,6 +93,15 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
+}
+
+func getConfigPath() string {
+	defaultPath := "./config.yml"
+	pathFromEnvironmentVariable := os.Getenv("GIT_TEAM_CONFIG_PATH")
+	if len(pathFromEnvironmentVariable) == 0 {
+		return defaultPath
+	}
+	return pathFromEnvironmentVariable
 }
 
 func printPairs(team []User) {

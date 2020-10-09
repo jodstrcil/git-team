@@ -2,6 +2,7 @@ package main
 
 import (
 	"github.com/stretchr/testify/assert"
+	"os"
 	"testing"
 )
 
@@ -53,4 +54,19 @@ func TestCommitMessageFormat(t *testing.T) {
 			assert.Equal(t, tt.expectedFormattedMessage, got)
 		})
 	}
+}
+
+func TestLoadDefaultConfigWhenEnvironmentalIsEmpty(t *testing.T) {
+	os.Clearenv()
+	expectedPath := "./config.yml"
+	result := getConfigPath()
+	assert.Equal(t, expectedPath, result)
+}
+
+func TestLoadConfigDefinedInEnvironmental(t *testing.T) {
+	envVarPath := "/some/path/config.yml"
+	os.Setenv("GIT_TEAM_CONFIG_PATH", envVarPath)
+	expectedPath := envVarPath
+	result := getConfigPath()
+	assert.Equal(t, expectedPath, result)
 }
