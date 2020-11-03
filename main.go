@@ -24,7 +24,7 @@ type User struct {
 type MessageContent struct {
 	Collaborators []User
 	Message       string
-	JiraTag       string
+	TicketTag     string
 	JiraNumber    int
 }
 
@@ -38,7 +38,7 @@ func main() {
 	var team, jiraTag = loadConfig(ConfigPath)
 	var pair string
 	var FullMsg MessageContent
-	FullMsg.JiraTag = jiraTag
+	FullMsg.TicketTag = jiraTag
 
 	app := &cli.App{
 		Name:  "Git Team template ",

@@ -1,7 +1,7 @@
 package main
 
 var msgFormat =
-`{{- if .JiraNumber}}[{{.JiraTag}}-{{ .JiraNumber }}] {{end}}{{ .Message }}
+`{{- if .JiraNumber}}[{{.TicketTag}}-{{ .JiraNumber }}] {{end}}{{ .Message }}
 {{- if .Collaborators}}
 {{println}}{{- range .Collaborators }}
 {{- if .Email}}
