@@ -62,9 +62,9 @@ func main() {
 						Destination: &pair,
 					},
 					&cli.IntFlag{
-						Name:        "jira",
-						Aliases:     []string{"j"},
-						Usage:       "add jira ticket number to commit message",
+						Name:        "ticket",
+						Aliases:     []string{"t"},
+						Usage:       "add ticket number to commit message",
 						Destination: &FullMsg.JiraNumber,
 					},
 				},
