@@ -25,20 +25,20 @@ type MessageContent struct {
 	Collaborators []User
 	Message       string
 	TicketTag     string
-	JiraNumber    int
+	TicketNumber  int
 }
 
 type Config struct {
-	Users   []User
-	JiraTag string
+	Users     []User
+	TicketTag string
 }
 
 func main() {
 	var ConfigPath = getConfigPath()
-	var team, jiraTag = loadConfig(ConfigPath)
+	var team, ticketTag = loadConfig(ConfigPath)
 	var pair string
 	var FullMsg MessageContent
-	FullMsg.TicketTag = jiraTag
+	FullMsg.TicketTag = ticketTag
 
 	app := &cli.App{
 		Name:  "Git Team template ",
@@ -65,7 +65,7 @@ func main() {
 						Name:        "ticket",
 						Aliases:     []string{"t"},
 						Usage:       "add ticket number to commit message",
-						Destination: &FullMsg.JiraNumber,
+						Destination: &FullMsg.TicketNumber,
 					},
 				},
 				Action: func(c *cli.Context) error {
@@ -168,5 +168,5 @@ func loadConfig(configPath string) ([]User, string) {
 	if err != nil {
 		fmt.Errorf("Error while marshaling: %w\n", err)
 	}
-	return config.Users, config.JiraTag
+	return config.Users, config.TicketTag
 }
